@@ -1,15 +1,25 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
+import axios from 'axios';
 
 const Registration = () => {
   const [name, setName] = useState("");
   const [studentid, setStudentid] = useState("");
   const [semester, setSemester] = useState("");
-  const [department, setDepartment] = useState("bca"); // Set default value for department
+  const [department, setDepartment] = useState("bca"); 
 
   const register = () => {
     console.log(name, studentid, semester, department);
+    axios.post('http://localhost:4000/registerStudent',{
+      "id":studentid,
+      "name":name,
+      "department":department,
+      "sem":semester,
+      "totalAttendance":0
+    }).then((res) => {
+      console.log(res)
+    }).catch((err) => console.log(err))
   };
 
   const handleDepartmentChange = (e) => {
