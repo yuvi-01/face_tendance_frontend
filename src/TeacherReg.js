@@ -7,20 +7,24 @@ const TeacherLogin = () => {
   const [password, setPassword] = useState("");
 
   function handleLogin() {
-    // Perform authentication logic for teacher login using teacherId and password
+   
     console.log("Teacher ID:", teacherId);
     console.log("Password:", password);
 
-    // Add your authentication logic here (e.g., API calls, validation)
+    
   }
 
   return (
     <div>
+        <video width="600" height="400" id="myVideo" loop>
+        <source src="lines.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
       <div>
-        <h3>TEACHER LOGIN</h3>
+       
         <section>
           <form>
-            <h1>Login</h1>
+            <h1>Teacher Regestration</h1>
             <div className="inputbox">
               <ion-icon name="person-outline"></ion-icon>
               <input

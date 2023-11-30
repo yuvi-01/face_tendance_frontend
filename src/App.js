@@ -4,6 +4,7 @@ import Login from "./Login";
 import Registration from "./Registration";
 import TeacherLogin from "./TeacherReg";
 
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
