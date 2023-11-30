@@ -1,29 +1,50 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import './style.css';
+import axios from 'axios';
 
 const TeacherLogin = () => {
   const [teacherId, setTeacherId] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
 
-  function handleLogin() {
-    // Perform authentication logic for teacher login using teacherId and password
-    console.log("Teacher ID:", teacherId);
-    console.log("Password:", password);
-
-    // Add your authentication logic here (e.g., API calls, validation)
+  const register = () => {
+    axios.post('http://localhost:4000/facRegister', {
+      "id": teacherId,
+      "password": password,
+      "name": name
+    }).then((res) => {
+      console.log(res)
+      var ele = document.getElementById("msg");
+      if (res.data.msg === "success") {
+        ele.innerHTML += 'Registration Successful<i className="bi bi-check-circle"></i>';
+        ele.style.color = "white"
+        setPassword("")
+        setTeacherId("")
+        setName("")
+        return;
+      }
+      ele.innerText = "Registration Failed";
+      ele.style.color = "red"
+    }).catch(err => console.log(err))
   }
+
+
 
   return (
     <div>
+      <video width="600" height="400" id="myVideo" loop>
+        <source src="lines.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
       <div>
-        <h3>TEACHER LOGIN</h3>
         <section>
           <form>
-            <h1>Login</h1>
+            <h1>REGISTER</h1>
             <div className="inputbox">
               <ion-icon name="person-outline"></ion-icon>
               <input
+                value={teacherId}
                 type="text"
                 placeholder="Teacher ID"
                 onChange={(e) => setTeacherId(e.target.value)}
@@ -33,18 +54,30 @@ const TeacherLogin = () => {
             <div className="inputbox">
               <ion-icon name="lock-closed-outline"></ion-icon>
               <input
+                value={password}
                 type="password"
                 placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
             </div>
-            <button type="button" onClick={handleLogin} id="loginButton">
-              Log in
+            <div className="inputbox">
+              <ion-icon name="lock-closed-outline"></ion-icon>
+              <input
+                value={name}
+                type="text"
+                placeholder="Name"
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </div>
+            <p id="msg"></p>
+            <button type="button" id="loginButton" onClick={() => register()}>
+              Register
             </button>
             <div className="register">
               <p>
-                Don't have an account? <Link to="/teacher-register">Register</Link>
+                Already have an account? <Link to="/">Login</Link>
               </p>
             </div>
           </form>
