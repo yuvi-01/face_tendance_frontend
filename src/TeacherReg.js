@@ -8,11 +8,11 @@ const TeacherLogin = () => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
 
-  function handleLogin() {
+  // function handleLogin() {
    
-    console.log("Teacher ID:", teacherId);
-    console.log("Password:", password);
-
+  //   console.log("Teacher ID:", teacherId);
+  // console.log("Password:", password);
+  // }  
     
   const register = () => {
     axios.post('http://localhost:4000/facRegister', {
