@@ -8,6 +8,12 @@ const TeacherLogin = () => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
 
+  function handleLogin() {
+   
+    console.log("Teacher ID:", teacherId);
+    console.log("Password:", password);
+
+    
   const register = () => {
     axios.post('http://localhost:4000/facRegister', {
       "id": teacherId,
@@ -38,6 +44,8 @@ const TeacherLogin = () => {
         Your browser does not support the video tag.
       </video>
       <div>
+     
+
         <section>
           <form>
             <h1>REGISTER</h1>
